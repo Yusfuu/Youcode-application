@@ -1,6 +1,31 @@
-import './style.css'
+import "./style.css";
+import { Home, _404, About } from "./views";
+const render = (view) => {
+  document.querySelector("#app").innerHTML = view();
+};
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+window.addEventListener("hashchange", () => {
+  const route = window.location.pathname;
+  switch (route) {
+    case "/home":
+      render(Home);
+      break;
+    case "/about":
+      render(About);
+      break;
+    default:
+      render(_404);
+  }
+});
+
+const route = window.location.pathname;
+switch (route) {
+  case "/home":
+    render(Home);
+    break;
+  case "/about":
+    render(About);
+    break;
+  default:
+    render(_404);
+}
