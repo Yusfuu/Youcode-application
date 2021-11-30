@@ -1,3 +1,5 @@
-export { Home } from "./Home";
-export { _404 } from "./_404";
-export { About } from "./About";
+import { Home } from "./Home";
+import { _404 } from "./_404";
+import { About } from "./About";
+
+export const routes = { Home, _404, About };

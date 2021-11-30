@@ -1,3 +1,10 @@
 export const About = () => {
-  return "<h1>about page</h1>";
+
+
+  return {
+    dom: `
+    <h1 onclick="goto('home')" class="bg-gray-700">about page</h1>
+    `,
+    func: []
+  };
 };
