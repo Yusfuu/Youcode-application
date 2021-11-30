@@ -1,10 +1,13 @@
 export class Navigiation {
 
-  constructor() { }
+  constructor() {
+    this.routes = [];
+  }
 
   push(path) {
     location.hash = path;
     history.pushState({}, '', path);
+    this.routes.push(path);
   }
 
 }

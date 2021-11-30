@@ -8,9 +8,7 @@ export class Route {
 
   //Getters
   getpathName() {
-    let clone = window.location.pathname.substring(1);
-    clone = `${clone[0].toUpperCase()}${clone.slice(1)}`;
-    return clone;
+    return window.location.pathname;
   }
   //Methods
   pushState(state) {
@@ -24,13 +22,21 @@ export class Route {
   }
 
   entryPoint() {
+    let isRender = false;
     this.currentRoute = this.getpathName();
-    this.render(this.routes[this.currentRoute]);
-    const xx = this.routes[this.currentRoute]().func;
-    xx.map(x => {
-      let n = x.name
-      window[n] = x
+
+    this.routes.map(route => {
+      const include = route.path.includes(this.currentRoute);
+      if (include) {
+        this.render(route.component);
+        isRender = true;
+      }
     })
+
+    if (!isRender) {
+      const route = this.routes.find(route => route.exception);
+      this.render(route.component);
+    }
   }
 
   goto(path) {
