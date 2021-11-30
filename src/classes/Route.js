@@ -28,9 +28,19 @@ export class Route {
     this.routes.map(route => {
       const include = route.path.includes(this.currentRoute);
       if (include) {
-        this.render(route.component);
+        const component = route.component;
+        this.render(component);
+
+        component().func.forEach((el) => {
+          window[el.name] = el
+        });
+
         isRender = true;
+        console.log();
       }
+
+
+      console.log();
     })
 
     if (!isRender) {

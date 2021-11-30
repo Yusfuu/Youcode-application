@@ -2,19 +2,15 @@ import { Navigiation } from "../classes/Navigation";
 export const Home = () => {
   const navigiation = new Navigiation();
 
-  const increment = () => {
-    navigiation.push('/about');
-  };
-
-  const link = () => {
+  const go = () => {
     navigiation.push('/about');
   };
 
   return {
     dom: `
-      <h1 onclick="link()" class="bg-red-700">home page</h1>
+      <h1 onclick="go()" class="bg-red-700">home page</h1>
     `,
-    func: [increment, link]
+    func: [go]
   };
 };
 
